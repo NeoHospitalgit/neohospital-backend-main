@@ -7,10 +7,11 @@ const addDoctor = async (req, res) => {
       drDepartment,
       drSlug,
       drQualification,
-      drExperience,
       drDetail,
       drTiming,
       drStatus,
+      drExperience,
+      drMetaTags,
     } = req.body;
 
     const existingDoctor = await Doctor.findOne({ drTitle });
@@ -25,11 +26,12 @@ const addDoctor = async (req, res) => {
       drDepartment,
       drSlug,
       drQualification,
-      drExperience,
       drDetail,
       drImage,
       drTiming,
       drStatus,
+      drExperience: drExperience ? Number(drExperience) : undefined,
+      drMetaTags,
     });
 
     await doctorData.save();
@@ -60,10 +62,11 @@ const updateDoctor = async (req, res) => {
       drDepartment,
       drSlug,
       drQualification,
-      drExperience,
       drDetail,
       drTiming,
       drStatus,
+      drExperience,
+      drMetaTags,
     } = req.body;
     let drImage = null;
 
@@ -84,11 +87,12 @@ const updateDoctor = async (req, res) => {
         drDepartment,
         drSlug,
         drQualification,
-        drExperience,
         drImage,
         drDetail,
         drTiming,
         drStatus,
+        drExperience: drExperience ? Number(drExperience) : undefined,
+        drMetaTags,
       },
       { new: true }
     );
